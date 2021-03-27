@@ -11,6 +11,7 @@ const gamesReducer = (state = initialState, { type, payload } = {}) => {
     case FETCH_GAMES:
       return {
         ...state,
+        ...payload,
       };
     default:
       return state;
