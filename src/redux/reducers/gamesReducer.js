@@ -2,7 +2,7 @@ import { FETCH_GAMES } from '../actions/gamesActions/actionTypes';
 
 const initialState = {
   popular: [],
-  new: [],
+  newGames: [],
   upcoming: [],
 };
 
