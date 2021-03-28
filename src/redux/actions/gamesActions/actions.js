@@ -10,7 +10,7 @@ export const fetchGames = () => async (dispatch) => {
     type: FETCH_GAMES,
     payload: {
       popular: popularData.data.results,
-      new: newGamesData.data.results,
+      newGames: newGamesData.data.results,
       upcoming: upcomingGamesData.data.results,
     },
   });
