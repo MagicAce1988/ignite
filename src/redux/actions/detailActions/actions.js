@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { GameDetailsURL } from '../../../api';
 import {
-  GET_DETAIL,
   GET_DETAIL_ERROR,
   GET_DETAIL_PENDING,
   GET_DETAIL_SUCCESS,
