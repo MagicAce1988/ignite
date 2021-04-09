@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGames } from '../../redux/actions/gamesActions/actions';
 import { Game } from '../../components';
 import { GameList, Games } from './Home.styled';
+import GameDetail from '../../components/GameDetail/GameDetail';
 
 const Home = ({ ...props }) => {
   // State and variables
@@ -17,6 +18,7 @@ const Home = ({ ...props }) => {
 
   return (
     <GameList {...props}>
+      <GameDetail />
       <h2>Upcoming Games</h2>
       <Games>
         {upcoming.map((game) => (
