@@ -13,6 +13,5 @@ export const Container = styled(motion.div)`
     width: 100%;
     height: 40vh;
     object-fit: cover;
-    display: block;
   }
 `;

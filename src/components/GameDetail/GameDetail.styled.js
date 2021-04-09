@@ -22,6 +22,7 @@ export const CardShadow = styled(motion.div)`
 `;
 
 export const Detail = styled(motion.div)`
+  cursor: pointer;
   width: 80%;
   border-radius: 1rem;
   padding: 2rem 5rem;
