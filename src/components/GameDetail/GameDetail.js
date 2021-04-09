@@ -1,6 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { CardShadow, Detail } from './GameDetail.styled';
+import {
+  CardShadow,
+  Description,
+  Detail,
+  Info,
+  Media,
+  Platforms,
+  Stats,
+} from './GameDetail.styled';
 
 const GameDetail = ({ ...props }) => {
   // variables and state
@@ -10,26 +18,26 @@ const GameDetail = ({ ...props }) => {
   return (
     <CardShadow>
       <Detail>
-        <div className="stats">
+        <Stats>
           <div className="rating">
             <h3>{detail.name}</h3>
             <p>Rating: {detail.rating}</p>
           </div>
-          <div className="info">
+          <Info>
             <h3>Platforms</h3>
-            <div className="platforms">
+            <Platforms>
               {detail.platforms?.map((data) => (
                 <h3 key={data.platform.id}>{data.platform.name}</h3>
               ))}
-            </div>
-          </div>
-        </div>
-        <div className="media">
+            </Platforms>
+          </Info>
+        </Stats>
+        <Media>
           <img src={detail.background_image} alt={detail.name} />
-        </div>
-        <div className="description">
+        </Media>
+        <Description>
           <p>{detail.description_raw}</p>
-        </div>
+        </Description>
         <div className="gallery">
           {detail.short_screenshots?.map((short_screenshot) => (
             <img
