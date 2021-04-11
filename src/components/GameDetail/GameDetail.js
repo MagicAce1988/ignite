@@ -15,6 +15,8 @@ import xbox from '../../images/xbox.svg';
 import nintendo from '../../images/nintendo.svg';
 import apple from '../../images/apple.svg';
 import gamepad from '../../images/gamepad.svg';
+import emptyStar from '../../images/star-empty.png';
+import fullStar from '../../images/star-full.png';
 import {
   CardShadow,
   Description,
@@ -54,14 +56,19 @@ const GameDetail = ({ pathId, ...props }) => {
     );
   };
 
+  const getStars = (rating) => {
+    return [0, 0, 0, 0, 0].map((_, index) => (
+      <img
+        src={index + 1 <= Math.round(rating) ? fullStar : emptyStar}
+        alt="star"
+      />
+    ));
+  };
+
   // effects
 
   useOutsideClick(ref, exitModal);
   useKeyboardBehaviour('escape', exitModal);
-
-  console.log(
-    removeSameStartDuplicates(detail.platforms || [], 3, 'platform.name')
-  );
 
   return !isLoading ? (
     <CardShadow>
@@ -69,7 +76,7 @@ const GameDetail = ({ pathId, ...props }) => {
         <Stats>
           <div className="rating">
             <motion.h3 layoutId={`title ${pathId}`}>{detail.name}</motion.h3>
-            <p>Rating: {detail.rating}</p>
+            {getStars(detail.rating)}
           </div>
           <Info>
             <h3>Platforms</h3>

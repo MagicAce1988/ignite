@@ -23,7 +23,6 @@ export const Detail = styled(motion.div)`
     display: none;
   }
   z-index: 10;
-  cursor: pointer;
   width: 80%;
   height: 85vh;
   border-radius: 1rem;
@@ -39,6 +38,11 @@ export const Detail = styled(motion.div)`
 `;
 
 export const Stats = styled(motion.div)`
+  img {
+    width: 2rem;
+    height: 2rem;
+    display: inline;
+  }
   display: flex;
   justify-content: space-between;
   align-items: center;
