@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const CardShadow = styled(motion.div)`
-  z-index: 10;
+  z-index: 5;
   width: 100%;
   min-height: 100vh;
   overflow-y: scroll;
@@ -10,24 +10,24 @@ export const CardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
-  &::-webkit-scrollbar {
-    width: 0.5rem;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #ff7676;
-  }
-  &::-webkit-scrollbar-track {
-    width: 0.5rem;
-    background: white;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Detail = styled(motion.div)`
-  transform: translateZ(0);
+  overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  z-index: 10;
   cursor: pointer;
   width: 80%;
+  height: 85vh;
   border-radius: 1rem;
-  padding: 2rem 5rem;
+  padding: 2rem;
   background: white;
   position: absolute;
   left: 10%;
