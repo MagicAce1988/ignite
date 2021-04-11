@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { minimizeImageFromApi, stickyBody } from '../../utils';
 import { loadDetail } from '../../redux/actions/detailActions/actions';
 import { Container } from './Game.styled';
+import { motion } from 'framer-motion';
 
 const Game = ({
   gameInfo: { name, released, background_image, id, short_screenshots },
@@ -20,11 +21,15 @@ const Game = ({
   };
 
   return (
-    <Container onClick={loadDetailHandler} {...props}>
+    <Container layoutId={id} onClick={loadDetailHandler} {...props}>
       <Link to={`/game/${id}`}>
-        <h3>{name}</h3>
+        <motion.h3 layoutId={`title ${id}`}>{name}</motion.h3>
         <p>{released}</p>
-        <img src={minimizeImageFromApi(background_image, 640)} alt={name} />
+        <motion.img
+          layoutId={`image ${id}`}
+          src={minimizeImageFromApi(background_image, 640)}
+          alt={name}
+        />
       </Link>
     </Container>
   );
