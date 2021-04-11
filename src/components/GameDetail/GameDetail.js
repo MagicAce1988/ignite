@@ -1,7 +1,13 @@
+import { motion } from 'framer-motion';
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { stickyBody, useKeyboardBehaviour, useOutsideClick } from '../../utils';
+import {
+  minimizeImageFromApi,
+  stickyBody,
+  useKeyboardBehaviour,
+  useOutsideClick,
+} from '../../utils';
 import {
   CardShadow,
   Description,
@@ -12,7 +18,7 @@ import {
   Stats,
 } from './GameDetail.styled';
 
-const GameDetail = ({ ...props }) => {
+const GameDetail = ({ pathId, ...props }) => {
   // variables and state
 
   const { isLoading, game: detail } = useSelector((state) => state.details);
@@ -35,10 +41,12 @@ const GameDetail = ({ ...props }) => {
     <>
       {!isLoading ? (
         <CardShadow>
-          <Detail ref={ref}>
+          <Detail layoutId={pathId} ref={ref}>
             <Stats>
               <div className="rating">
-                <h3>{detail.name}</h3>
+                <motion.h3 layoutId={`title ${pathId}`}>
+                  {detail.name}
+                </motion.h3>
                 <p>Rating: {detail.rating}</p>
               </div>
               <Info>
@@ -51,7 +59,11 @@ const GameDetail = ({ ...props }) => {
               </Info>
             </Stats>
             <Media>
-              <img src={detail.background_image} alt={detail.name} />
+              <motion.img
+                layoutId={`image ${pathId}`}
+                src={minimizeImageFromApi(detail.background_image, 1280)}
+                alt={detail.name}
+              />
             </Media>
             <Description>
               <p>{detail.description_raw}</p>
@@ -60,7 +72,7 @@ const GameDetail = ({ ...props }) => {
               {detail.short_screenshots?.map((short_screenshot) => (
                 <img
                   key={short_screenshot.id}
-                  src={short_screenshot.image}
+                  src={minimizeImageFromApi(short_screenshot.image, 1280)}
                   alt="short screenshot"
                 />
               ))}

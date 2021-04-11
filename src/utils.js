@@ -131,3 +131,15 @@ export const useKeyboardBehaviour = (key, effect, event) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
+
+export const minimizeImageFromApi = (imagePath, size) => {
+  const image =
+    imagePath &&
+    (imagePath.match(/media\/screenshots/)
+      ? imagePath.replace(
+          'media/screenshots',
+          `media/resize/${size}/-/screenshots`
+        )
+      : imagePath.replace('/media/games/', `/media/resize/${size}/-/games/`));
+  return image;
+};

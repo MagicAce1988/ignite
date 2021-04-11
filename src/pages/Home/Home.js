@@ -5,6 +5,7 @@ import { Game } from '../../components';
 import { GameList, Games } from './Home.styled';
 import GameDetail from '../../components/GameDetail/GameDetail';
 import { useLocation } from 'react-router';
+import { AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 
 const Home = ({ ...props }) => {
   // State and variables
@@ -21,25 +22,29 @@ const Home = ({ ...props }) => {
 
   return (
     <GameList {...props}>
-      {pathId && <GameDetail />}
-      <h2>Upcoming Games</h2>
-      <Games>
-        {upcoming.map((game) => (
-          <Game key={game.id} gameInfo={game} />
-        ))}
-      </Games>
-      <h2>Popular Games</h2>
-      <Games>
-        {popular.map((game) => (
-          <Game key={game.id} gameInfo={game} />
-        ))}
-      </Games>
-      <h2>New Games</h2>
-      <Games>
-        {newGames.map((game) => (
-          <Game key={game.id} gameInfo={game} />
-        ))}
-      </Games>
+      <AnimateSharedLayout type="crossfade">
+        <AnimatePresence>
+          {pathId && <GameDetail pathId={+pathId} />}
+        </AnimatePresence>
+        <h2>Upcoming Games</h2>
+        <Games>
+          {upcoming.map((game) => (
+            <Game key={game.id} gameInfo={game} />
+          ))}
+        </Games>
+        <h2>Popular Games</h2>
+        <Games>
+          {popular.map((game) => (
+            <Game key={game.id} gameInfo={game} />
+          ))}
+        </Games>
+        <h2>New Games</h2>
+        <Games>
+          {newGames.map((game) => (
+            <Game key={game.id} gameInfo={game} />
+          ))}
+        </Games>
+      </AnimateSharedLayout>
     </GameList>
   );
 };

@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const CardShadow = styled(motion.div)`
+  z-index: 10;
   width: 100%;
   min-height: 100vh;
   overflow-y: scroll;
@@ -22,6 +23,7 @@ export const CardShadow = styled(motion.div)`
 `;
 
 export const Detail = styled(motion.div)`
+  transform: translateZ(0);
   cursor: pointer;
   width: 80%;
   border-radius: 1rem;
