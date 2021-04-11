@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { stickyBody } from '../../utils';
+import { minimizeImageFromApi, stickyBody } from '../../utils';
 import { loadDetail } from '../../redux/actions/detailActions/actions';
 import { Container } from './Game.styled';
 
@@ -24,7 +24,7 @@ const Game = ({
       <Link to={`/game/${id}`}>
         <h3>{name}</h3>
         <p>{released}</p>
-        <img src={background_image} alt={name} />
+        <img src={minimizeImageFromApi(background_image, 640)} alt={name} />
       </Link>
     </Container>
   );

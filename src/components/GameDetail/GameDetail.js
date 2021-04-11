@@ -1,7 +1,12 @@
 import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { stickyBody, useKeyboardBehaviour, useOutsideClick } from '../../utils';
+import {
+  minimizeImageFromApi,
+  stickyBody,
+  useKeyboardBehaviour,
+  useOutsideClick,
+} from '../../utils';
 import {
   CardShadow,
   Description,
@@ -51,7 +56,10 @@ const GameDetail = ({ ...props }) => {
               </Info>
             </Stats>
             <Media>
-              <img src={detail.background_image} alt={detail.name} />
+              <img
+                src={minimizeImageFromApi(detail.background_image, 1280)}
+                alt={detail.name}
+              />
             </Media>
             <Description>
               <p>{detail.description_raw}</p>
@@ -60,7 +68,7 @@ const GameDetail = ({ ...props }) => {
               {detail.short_screenshots?.map((short_screenshot) => (
                 <img
                   key={short_screenshot.id}
-                  src={short_screenshot.image}
+                  src={minimizeImageFromApi(short_screenshot.image, 1280)}
                   alt="short screenshot"
                 />
               ))}
