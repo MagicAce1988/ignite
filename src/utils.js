@@ -16,7 +16,6 @@ export const useOutsideClick = (ref, onClickOutside) => {
 
 export const stickyBody = (state) => {
   const body = document.querySelector('body');
-  body.style.position = state ? 'sticky' : 'unset';
   body.style.overflow = state ? 'hidden' : 'auto';
 };
 
@@ -142,4 +141,30 @@ export const minimizeImageFromApi = (imagePath, size) => {
         )
       : imagePath.replace('/media/games/', `/media/resize/${size}/-/games/`));
   return image;
+};
+
+export const getValueAtAddress = (obj = {}, address) => {
+  const addressArray = address.split('.');
+  return addressArray.reduce((acc, curr) => acc[curr], obj);
+};
+
+export const removeSameStartDuplicates = (
+  array,
+  numberOfChars,
+  addressInObject
+) => {
+  return array.reduce((acc, val) => {
+    if (
+      acc.findIndex((element) =>
+        addressInObject
+          ? getValueAtAddress(element, addressInObject).startsWith(
+              getValueAtAddress(val, addressInObject).slice(0, numberOfChars)
+            )
+          : element.startsWith(val.slice(0, numberOfChars))
+      ) === -1
+    ) {
+      acc = [...acc, val];
+    }
+    return acc;
+  }, []);
 };
